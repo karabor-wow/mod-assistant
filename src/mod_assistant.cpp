@@ -655,7 +655,7 @@ const std::unordered_map<LocaleConstant, std::string> GOSSIP_PREVIOUS_PAGE = {
     {LOCALE_ruRU, "Предыдущая страница"},
 };
 
-std::unordered_map<std::string, const std::unordered_map<LocaleConstant, std::string>*> assistantTextMaps = {
+std::unordered_map<std::string, const std::unordered_map<LocaleConstant, std::string> *> assistantTextMaps = {
     {"heirlooms", &GOSSIP_HEIRLOOMS},
     {"heirlooms_weapons", &GOSSIP_HEIRLOOMS_WEAPONS},
     {"heirlooms_armor", &GOSSIP_HEIRLOOMS_ARMOR},
@@ -712,12 +712,12 @@ std::unordered_map<std::string, const std::unordered_map<LocaleConstant, std::st
     {"previous_page", &GOSSIP_PREVIOUS_PAGE},
 };
 
-std::string GetAssistantLocaleText(LocaleConstant locale, const std::string& titleType)
+std::string GetAssistantLocaleText(LocaleConstant locale, const std::string &titleType)
 {
     auto textMapIt = assistantTextMaps.find(titleType);
     if (textMapIt != assistantTextMaps.end())
     {
-        const std::unordered_map<LocaleConstant, std::string>* textMap = textMapIt->second;
+        const std::unordered_map<LocaleConstant, std::string> *textMap = textMapIt->second;
         auto it = textMap->find(locale);
         if (it != textMap->end())
         {

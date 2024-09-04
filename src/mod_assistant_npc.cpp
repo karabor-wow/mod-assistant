@@ -1,10 +1,10 @@
 #include "mod_assistant.h"
 
-bool Assistant::OnGossipHello(Player* player, Creature* creature)
+bool Assistant::OnGossipHello(Player *player, Creature *creature)
 {
     ClearGossipMenuFor(player);
 
-    WorldSession* session = player->GetSession();
+    WorldSession *session = player->GetSession();
     LocaleConstant locale = session->GetSessionDbLocaleIndex();
 
     if (HeirloomsEnabled)
@@ -51,9 +51,9 @@ bool Assistant::OnGossipHello(Player* player, Creature* creature)
     return true;
 }
 
-bool Assistant::OnGossipSelect(Player* player, Creature* creature, uint32 sender, uint32 action)
+bool Assistant::OnGossipSelect(Player *player, Creature *creature, uint32 sender, uint32 action)
 {
-    WorldSession* session = player->GetSession();
+    WorldSession *session = player->GetSession();
     LocaleConstant locale = session->GetSessionDbLocaleIndex();
 
     if (sender != GOSSIP_SENDER_MAIN)
@@ -69,8 +69,8 @@ bool Assistant::OnGossipSelect(Player* player, Creature* creature, uint32 sender
     {
         ClearGossipMenuFor(player);
         AddGossipItemFor(player, GOSSIP_ICON_VENDOR, GetAssistantLocaleText(locale, "heirlooms_weapons"), GOSSIP_SENDER_MAIN, ASSISTANT_GOSSIP_HEIRLOOM + 1);
-        AddGossipItemFor(player, GOSSIP_ICON_VENDOR, GetAssistantLocaleText(locale, "heirlooms_armors"), GOSSIP_SENDER_MAIN, ASSISTANT_GOSSIP_HEIRLOOM + 2);
-        AddGossipItemFor(player, GOSSIP_ICON_VENDOR, GetAssistantLocaleText(locale, "heirlooms_others"), GOSSIP_SENDER_MAIN, ASSISTANT_GOSSIP_HEIRLOOM + 3);
+        AddGossipItemFor(player, GOSSIP_ICON_VENDOR, GetAssistantLocaleText(locale, "heirlooms_armor"), GOSSIP_SENDER_MAIN, ASSISTANT_GOSSIP_HEIRLOOM + 2);
+        AddGossipItemFor(player, GOSSIP_ICON_VENDOR, GetAssistantLocaleText(locale, "heirlooms_other"), GOSSIP_SENDER_MAIN, ASSISTANT_GOSSIP_HEIRLOOM + 3);
         AddGossipItemFor(player, GOSSIP_ICON_CHAT, GetAssistantLocaleText(locale, "previous_page"), GOSSIP_SENDER_MAIN, 1);
         SendGossipMenuFor(player, ASSISTANT_GOSSIP_TEXT, creature->GetGUID());
     }
@@ -398,9 +398,9 @@ bool Assistant::OnGossipSelect(Player* player, Creature* creature, uint32 sender
     }
     else if (action == ASSISTANT_GOSSIP_INSTANCES + 3)
     {
-        if (Group* group = player->GetGroup())
+        if (Group *group = player->GetGroup())
         {
-            group->DoForAllMembers([this](Player* member)
+            group->DoForAllMembers([this](Player *member)
                                    { ResetInstances(member, INSTANCE_TYPE_HEROIC); });
 
             player->ModifyMoney(-HeroicInstanceCost);
@@ -425,9 +425,9 @@ bool Assistant::OnGossipSelect(Player* player, Creature* creature, uint32 sender
     }
     else if (action == ASSISTANT_GOSSIP_INSTANCES + 6)
     {
-        if (Group* group = player->GetGroup())
+        if (Group *group = player->GetGroup())
         {
-            group->DoForAllMembers([this](Player* member)
+            group->DoForAllMembers([this](Player *member)
                                    { ResetInstances(member, INSTANCE_TYPE_RAID); });
 
             player->ModifyMoney(-RaidInstanceCost);
